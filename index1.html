@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	  <input id="okno" type="text" value="" />
+  <br />
+  <input id="but_1" type="button" value="1" />
+  <input id="but_2" type="button" value="2" />
+  <input id="but_3" type="button" value="3" />
+  <input id="plus" type="button" value="+" />
+  <br />
+  <input id="but_4" type="button" value="4" />
+  <input id="but_5" type="button" value="5" />
+  <input id="but_6" type="button" value="6" />
+  <input id="sub" type="button" value=" - " />
+  <br />
+  <input id="but_7" type="button" value="7" />
+  <input id="but_8" type="button" value="8" />
+  <input id="but_9" type="button" value="9" />
+  <input id="mult" type="button" value=" * "  />
+  <input id="otr" type="button" value="+/-" />
+  <br /> 
+  <input id="but_0" type="button" value="0" />
+  <input id="div" type="button" value=" / " />
+  <input id="calculate" type="button" value="  =  " />
+  <input id="clr" type="button" value=" C " />
+  <input id="pr" type="button" value="%" />
+</body>
+
+
+
+<script>
+	
+var A,B,C;
+var action = "+";
+ 
+function getValue(id) {
+    var res = document.getElementById(id).value - 0;
+    if (!isNaN(res)) 
+        return res;
+    alert("В элементе " + id + " не численное значение!!!");
+}
+ 
+function PutNum(val) {
+    document.getElementById("okno").value = (document.getElementById("okno").value + val)-0;
+ 
+}
+ 
+function plus () {
+    A = getValue("okno");
+    document.getElementById("okno").value = 0;
+    action = "+";
+}
+ 
+function sub() {
+    A = getValue("okno");
+    document.getElementById("okno").value = 0;
+    action = "-";
+}
+ 
+function mult() {
+    A = getValue("okno");
+    document.getElementById("okno").value = 0;
+    action = "*";
+}
+ 
+function div() {
+    A = getValue("okno");
+    document.getElementById("okno").value = 0;
+    action = "/";
+}
+ 
+function clr() {
+    document.getElementById("okno").value = 0;
+}
+ 
+ 
+function calculate() {
+    B = getValue("okno");
+    switch(action) {
+        case "+":
+            C = A + B;
+            break;
+        case "-":
+            C = A - B;
+            break;
+        case "*":
+            C = A * B;
+            break;
+        case "/":
+            if (B == 0) {
+                alert("Нельзя делить на ноль!");
+            }
+            else {
+                C = A / B;
+            }
+            break;
+    }
+    document.getElementById("okno").value = C;
+}
+ 
+window.onload = function () {
+ 
+    for (var i = 0; i < 10; i++) {
+        (function (val) {
+            document.getElementById("but_" + val).onclick = function () {
+                PutNum(val);
+            }
+        })(i);
+    }
+    document.getElementById("plus").addEventListener("click", plus);
+    document.getElementById("calculate").addEventListener("click", calculate);
+    document.getElementById("sub").addEventListener("click", sub);
+    document.getElementById("mult").addEventListener("click", mult);
+    document.getElementById("div").addEventListener("click", div);
+    document.getElementById("clr").addEventListener("click", clr);
+    document.getElementById("pr").addEventListener("click", percent);
+    document.getElementById("otr").addEventListener("click", otr);
+}
+0
+	
+</script>
+
+</html>
+
+
